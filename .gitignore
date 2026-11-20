@@ -1,4 +1,6 @@
 __pycache__/
 *.pyc
 data/sessions.json
+data/settings.json
+data/sound_cache/
 charts/*.png

@@ -60,3 +60,22 @@ tkinter has no threads in this app. The GUI schedules itself:
 tick updates the clock, the progress bar, and reschedules only while
 running. Pause = cancel the scheduled call. This cooperative loop is
 how most simple GUI apps animate without freezing the window.
+
+## 7. (v2.0) Smooth animation without lying about time
+
+The v2.0 ring glides smoothly, but the timer core still ticks exactly
+once per second — the core is the source of truth. The GUI keeps the
+time of the last tick and the remaining seconds at that moment, and
+the animation loop (every 50 ms) *interpolates* the ring between the
+last tick and the next one. If the interpolation were ever wrong, the
+worst case is a slightly-off picture for less than a second — the
+clock, the logging and the session count can never drift. Separate
+"what is true" from "what is drawn", and animations become safe.
+
+## 8. (v2.0) Synthesizing sound with the standard library
+
+The chimes are sine waves with a smooth fade envelope, written as WAV
+files by `sounds.py` — no downloads, no licences, fully offline.
+Volume is a neat trick: winsound cannot change volume, so the player
+renders a *quieter copy* of the wave (samples scaled by the volume)
+and plays that file instead.
