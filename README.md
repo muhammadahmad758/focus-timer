@@ -11,6 +11,14 @@ All v1.0 functionality is preserved — the timer logic, storage,
 statistics and streak rules are byte-for-byte the same code. Only the
 interface was rebuilt.
 
+## Screenshot
+
+![Focus Timer v2.0 — Timer view](docs/screenshot.png)
+
+*The Timer view: the gradient progress ring is the hero, with session
+dots, mode label and Start/Pause controls. Screenshot taken from the
+actual running application.*
+
 ## What's new in v2.0
 
 - **Midnight Glass design** — deep navy gradient background, simulated
@@ -50,19 +58,43 @@ interface was rebuilt.
 - **Streak counter** — consecutive days with at least one completed
   session; it stays alive until a full day is missed.
 
+## Installation (Windows)
+
+You need Python 3.10 or newer. tkinter ships with Python on Windows,
+so the only extra package is matplotlib:
+
+```
+py -m pip install -r requirements.txt
+```
+
 ## Run it
 
 ```
-py -m pip install matplotlib
 py main.py
 ```
 
-(tkinter ships with Python on Windows — nothing else to install.)
+Press **Space** to start/pause from the Timer view. Your sessions are
+logged automatically to `data/sessions.json` and your preferences to
+`data/settings.json` — both are created on first run and are excluded
+from this repository.
+
+## Testing
 
 ```
-py demo.py                              headless demo + charts, no window
 py -m unittest discover -s tests -v     29 tests (18 original + 11 new)
+py demo.py                              headless demo + charts, no window
 ```
+
+## Technologies used
+
+- **Python 3** — application language.
+- **tkinter** (standard library) — the desktop GUI, custom-drawn ring
+  and glass-style panels.
+- **matplotlib** — PNG productivity charts (daily / weekly).
+- **wave + winsound** (standard library) — locally synthesized chime
+  sounds and playback on Windows.
+- **JSON files** — offline session log and settings; no database, no
+  network, no accounts.
 
 ## How it is built
 
@@ -94,6 +126,14 @@ not blur what is behind the window.
 - v2.0 was built and verified running on a real (virtual) display with
   automated interaction tests; the final Windows click-through is best
   confirmed on your own PC.
+
+## Credits
+
+Designed and built by **Muhammad Ahmad Farooq**
+([@muhammadahmad758](https://github.com/muhammadahmad758)) — an
+original project: the timer logic, interface, charts and sounds were
+all written for this app, and the chime sounds were synthesized in
+code rather than taken from any sound library.
 
 ## License
 
