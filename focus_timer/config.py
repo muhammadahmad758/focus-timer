@@ -1,0 +1,11 @@
+"""Settings for the Focus Timer. One place for every default."""
+
+DEFAULT_FOCUS_MINUTES = 25
+DEFAULT_BREAK_MINUTES = 5
+DEFAULT_LONG_BREAK_MINUTES = 15
+SESSIONS_BEFORE_LONG_BREAK = 4
+
+MIN_MINUTES = 1
+MAX_MINUTES = 180
+
+DATA_FILENAME = "sessions.json"
